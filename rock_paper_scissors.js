@@ -16,10 +16,9 @@ function getComputerChoice () {
   }
 
 // PC input function  
-function getHumanChoice () {
-   playerChoice = prompt("Enter 'Rock', 'Paper' or 'Scissors': ")
-   return playerChoice
-} 
+// function getHumanChoice () {
+//     // return playerChoice;
+// } 
 
 // Game Logic
 function playRound (humanChoice, computerChoice) {
@@ -42,11 +41,11 @@ function playRound (humanChoice, computerChoice) {
     return console.log(`You ${EoR}!`)
 }
 
-humanSelection = getHumanChoice();
+// let humanSelection = getHumanChoice();
 computerSelection = getComputerChoice();
 
 function playGame () {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 1; i++) { /* temp round reduction*/
         if (i > 0) {
             humanSelection = getHumanChoice();
             computerSelection = getComputerChoice();
@@ -55,8 +54,40 @@ function playGame () {
     console.log(`Round ${i +1}: \n Player Score: ${humanScore} | NPC Score: ${computerScore}`)
 }
 }
+// --- UI ----
+const container = document.querySelector("#container");
+
+// Buttons
+const rock = document.querySelector("#rock");
+rock.addEventListener("click", () => {
+    humanSelection = "rock";
+    computerSelection = getComputerChoice();
+  playRound(humanSelection,computerSelection);
+});
+
+const paper = document.querySelector("#paper");
+paper.addEventListener("click", () => {
+    humanSelection = "paper";
+    computerSelection = getComputerChoice();
+  playRound(humanSelection,computerSelection);
+});
+
+const scissors = document.querySelector("#scissors");
+scissors.addEventListener("click", () => {
+    humanSelection = "scissors";
+    computerSelection = getComputerChoice();
+  playRound(humanSelection,computerSelection);
+});
+
+// Results
+
+const results = document.createElement("div");
+results.classList.add("results");
+results.textContent = "This is the glorious text-content!";
+
+container.appendChild(results);
 
 // Test commands
-playGame();
+// playGame();
 
   
