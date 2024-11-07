@@ -1,0 +1,44 @@
+body {
+    background-color: black;
+    color: white;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 32px;
+    min-width: 400px;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    margin: 25%;
+    align-items: center;
+    gap: 8px;
+}
+
+button {
+    padding: 4px;
+    min-width: 80px;
+    margin-bottom: 4px;
+    background-color: gold;
+    border-color: goldenrod;
+    border-radius: 8px;
+    border-style: groove;
+    font-weight: bold;
+}
+
+.round_update {
+    font-style: italic;
+    font-size: smaller;
+}
+
+.eor {
+    font-size: 20px;
+}
+
+.eog {
+    font-weight: bold;
+    font-size: larger;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: gold;
+    text-decoration: solid;
+    margin: 10px;
+}
