@@ -1,8 +1,10 @@
 humanScore = 0;
 computerScore = 0;
 EoR = null;
+roundNum = 0;
 
-// NPC selection function
+//                      ------- NPC Logic --------
+
 function getComputerChoice () {
     num = Math.random()
     if (num < 0.33) {
@@ -15,46 +17,49 @@ function getComputerChoice () {
     return npcChoice
   }
 
-// PC input function  
-// function getHumanChoice () {
-//     // return playerChoice;
-// } 
 
-// Game Logic
+//                      ------- Game Logic --------
+
 function playRound (humanChoice, computerChoice) {
+    // Round Play
+
     if (humanChoice.toLowerCase() == computerChoice) {
         EoR = "Draw";
-        console.log(`PC: ${humanChoice} vs NPC: ${computerChoice}`)
     }
     else if ((humanChoice.toLowerCase() == "rock" && computerChoice == "paper") || 
             (humanChoice.toLowerCase() == "scissors" && computerChoice == "rock") ||
             (humanChoice.toLowerCase() == "paper" && computerChoice == "scissors")) {
             EoR = "Lose";
-            console.log(`PC: ${humanChoice} vs NPC: ${computerChoice}`)
             computerScore ++;
     }
     else {
         EoR = "Win";
-        console.log(`PC: ${humanChoice} vs NPC: ${computerChoice}`)
         humanScore ++;
     }
-    return console.log(`You ${EoR}!`)
+    //Round Updates
+
+    round_update.textContent = `PC: ${humanChoice} vs NPC: ${computerChoice}`;
+    roundNum ++;
+    eor.textContent =`-You ${EoR}-`;
+    results.textContent = `Round ${roundNum}: \n Player Score: ${humanScore} | NPC Score: ${computerScore}`;
+    // Game End Condition 
+
+    if (humanScore == 5 || computerScore == 5) {
+        if (humanScore == 5) {
+            eog.textContent = "GAME OVER: The Player Wins!";
+        }
+        else {
+            eog.textContent = "GAME OVER: The NPC Wins!";
+        }
+        eor.textContent = ``;
+        document.getElementById("rock").disabled = true;
+        document.getElementById("paper").disabled = true;
+        document.getElementById("scissors").disabled = true;
+    }
 }
 
-// let humanSelection = getHumanChoice();
-computerSelection = getComputerChoice();
+//                      ------- UI --------
 
-function playGame () {
-    for (let i = 0; i < 1; i++) { /* temp round reduction*/
-        if (i > 0) {
-            humanSelection = getHumanChoice();
-            computerSelection = getComputerChoice();
-        } 
-    playRound(humanSelection, computerSelection);
-    console.log(`Round ${i +1}: \n Player Score: ${humanScore} | NPC Score: ${computerScore}`)
-}
-}
-// --- UI ----
 const container = document.querySelector("#container");
 
 // Buttons
@@ -79,15 +84,38 @@ scissors.addEventListener("click", () => {
   playRound(humanSelection,computerSelection);
 });
 
+// Round Update
+
+const round_update = document.createElement("div");
+round_update.classList.add("round_update");
+round_update.textContent = `PC: ??? vs NPC: ???`;
+
+container.appendChild(round_update);
+
+// EoR
+
+const eor = document.createElement("div");
+eor.classList.add("eor");
+eor.textContent = ``;
+
+container.appendChild(eor);
+
+
 // Results
 
 const results = document.createElement("div");
 results.classList.add("results");
-results.textContent = "This is the glorious text-content!";
+results.textContent = `Round ${roundNum}: \n Player Score: ${humanScore} | NPC Score: ${computerScore}`;
 
 container.appendChild(results);
 
-// Test commands
-// playGame();
+// EoG
+
+const eog = document.createElement("div");
+eog.classList.add("eog");
+eog.textContent = "";
+
+container.appendChild(eog);
+
 
   
