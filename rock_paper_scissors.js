@@ -6,17 +6,11 @@ roundNum = 0;
 //                      ------- NPC Logic --------
 
 function getComputerChoice () {
-    num = Math.random()
-    if (num < 0.33) {
-        npcChoice = "rock"
-    }
-    else if (num > 0.33 && num < 0.66) {
-        npcChoice = "scissors"
-    }
-    else npcChoice = "paper"
-    return npcChoice
-  }
-
+    let npcOptions = ["rock", "paper", "scissors"];
+    let randomNumber = Math.floor(Math.random() * (3));
+    let npcChoice = npcOptions.at(randomNumber);
+    return npcChoice;
+}
 
 //                      ------- Game Logic --------
 
